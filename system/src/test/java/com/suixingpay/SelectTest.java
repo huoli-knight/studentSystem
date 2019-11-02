@@ -2,6 +2,7 @@ package com.suixingpay;
 
 import com.suixingpay.controller.StudentController;
 import com.suixingpay.model.po.Student;
+import com.suixingpay.model.services.CourseService;
 import com.suixingpay.model.services.StudentService;
 import org.junit.After;
 import org.junit.Before;
