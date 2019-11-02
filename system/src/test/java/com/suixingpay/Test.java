@@ -34,6 +34,7 @@ public class Test {
     public void alertStudent() {
         student.setEmail("123456@suixingpay.com");
         student.setSudentId("20191020");
+
         System.out.println(studentService.alertStudent(student));
     }
 }
