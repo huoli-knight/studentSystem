@@ -8,6 +8,6 @@ spring:
         password: root
         driverClassName: com.mysql.jdbc.Driver
 
-#mybatis:
-#    typeAliasesPackage: com.suixingpay.model.po
-#    mapperLocations: classpath:com.suixingpay.model.mapper/*.xml
+mybatis:
+    typeAliasesPackage: com.suixingpay.model.po
+    mapperLocations: classpath:com.suixingpay.model.mapper/*.xml

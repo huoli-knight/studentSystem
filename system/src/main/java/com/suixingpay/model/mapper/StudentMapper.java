@@ -9,8 +9,8 @@ import java.util.ArrayList;
 @Mapper
 public interface StudentMapper {
 
-    @Select("SELECT id,sudentId,name,sex,age,address,email from student WHERE id = #{id};")
-    Student selectStudentById(int id);
+    @Select("SELECT id,sudentId,name,sex,age,address,email from student WHERE sudentid = #{sudentid};")
+    Student selectStudentById(int sudentid);
 
     @Select("SELECT id,sudentId,name,sex,age,address,email from student")
     ArrayList<Student> selectStudent();
