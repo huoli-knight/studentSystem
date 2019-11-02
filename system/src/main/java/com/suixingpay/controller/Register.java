@@ -19,6 +19,10 @@ public class Register {
     @Autowired
     private RegisterService registerService;
 
+    /*
+    *注册
+    * 参数 Administrator 注册用户名，密码
+     */
     @RequestMapping("/register")
     public String register(Administrator admin) {
         int adminId = registerService.register(admin);

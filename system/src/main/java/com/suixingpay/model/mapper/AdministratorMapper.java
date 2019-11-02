@@ -13,9 +13,15 @@ import org.apache.ibatis.annotations.Select;
 
 public interface AdministratorMapper {
 
+    /*
+    *根据用户名返回administrator 一条数据
+     */
     @Select("select a.id,a.username,a.password from administrator a where username = #{username}")
     public Administrator getAdminData(String username);
 
+    /*
+    *添加administrator一条数据
+     */
     @Insert("insert into administrator(username, password) values (#{username}, #{password})")
     public int addAdminData(Administrator admin);
 }
