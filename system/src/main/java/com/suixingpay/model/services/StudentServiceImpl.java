@@ -14,8 +14,8 @@ public class StudentServiceImpl implements StudentService {
     private StudentMapper studentMapper;
 
     @Override
-    public Student selectStudentById(int id){
-        return studentMapper.selectStudentById(id);
+    public Student selectStudentById(int sudentid){
+        return studentMapper.selectStudentById(sudentid);
     }
 
     @Override

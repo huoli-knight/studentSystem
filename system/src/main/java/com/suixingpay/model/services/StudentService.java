@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 @Service
 public interface StudentService {
-    Student selectStudentById(int id);
+    Student selectStudentById(int sudentid);
     ArrayList<Student> selectStudent();
 
     public int alertStudent(Student student);
