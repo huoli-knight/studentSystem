@@ -11,7 +11,7 @@ import java.util.ArrayList;
 @Service
 public class StudentServiceImpl implements StudentService {
     @Autowired
-    StudentMapper studentMapper;
+    private StudentMapper studentMapper;
 
     @Override
     public Student selectStudentById(int sudentid){
@@ -21,5 +21,13 @@ public class StudentServiceImpl implements StudentService {
     @Override
     public ArrayList<Student> selectStudent() {
         return studentMapper.selectStudent();
+    }
+
+    @Override
+    public int alertStudent(Student student) {
+        if(studentMapper.alert(student) > 0) {
+            return 1;
+        }
+        return 0;
     }
 }

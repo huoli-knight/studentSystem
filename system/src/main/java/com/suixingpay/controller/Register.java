@@ -4,8 +4,8 @@ import com.suixingpay.model.common.Result;
 import com.suixingpay.model.po.Administrator;
 import com.suixingpay.model.services.RegisterService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 /*
  *@作者：周波
@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * 内容：注册管理员账号
  */
 
-@Controller
+@RestController
 @RequestMapping("/register")
 public class Register {
 

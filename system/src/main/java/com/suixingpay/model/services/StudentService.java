@@ -9,4 +9,6 @@ import java.util.ArrayList;
 public interface StudentService {
     Student selectStudentById(int sudentid);
     ArrayList<Student> selectStudent();
+
+    public int alertStudent(Student student);
 }

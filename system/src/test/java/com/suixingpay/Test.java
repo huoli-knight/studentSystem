@@ -1,33 +1,24 @@
 package com.suixingpay;
 
-import com.suixingpay.model.po.Administrator;
-import com.suixingpay.model.services.LoginService;
-import com.suixingpay.model.services.RegisterService;
+
+import com.suixingpay.model.po.Student;
+import com.suixingpay.model.services.StudentService;
 import org.junit.After;
 import org.junit.Before;
-import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-/*
-*@Author: 周波
-* 测试登录 及 注册
- */
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @EnableAutoConfiguration
-public class LoginTest {
-
+public class Test {
     @Autowired
-    private LoginService loginService;
+    private StudentService studentService;
 
-    @Autowired
-    private RegisterService registerService;
-
-    private Administrator admin = new Administrator();;
+    private Student student = new Student();
 
     @Before
     public void init() {
@@ -39,11 +30,10 @@ public class LoginTest {
         System.out.println("测试结束-----------------");
     }
 
-    @Test
-    public void login() {
-        admin.setUsername("admin2");
-        admin.setPassword("2222");
-        System.out.println(registerService.register(admin));
-        System.out.println(loginService.login(admin));
+    @org.junit.Test
+    public void alertStudent() {
+        student.setEmail("123456@suixingpay.com");
+        student.setSudentId("20191020");
+        System.out.println(studentService.alertStudent(student));
     }
 }
