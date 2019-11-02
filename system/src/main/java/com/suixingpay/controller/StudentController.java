@@ -1,7 +1,8 @@
 package com.suixingpay.controller;
 
+import com.suixingpay.model.common.Result;
 import com.suixingpay.model.po.Student;
-import com.suixingpay.model.services.StudentServiceImpl;
+import com.suixingpay.model.services.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,19 +18,35 @@ import java.util.ArrayList;
 @RequestMapping("/student")
 public class StudentController {
     @Autowired
-    StudentServiceImpl studentServiceImpl;
+    private StudentService studentService;
 
     @RequestMapping("/selectById")
     @ResponseBody
     public String selectById(int id,Model model){
-        model.addAttribute("student",studentServiceImpl.selectStudentById(id));
+        model.addAttribute("student",studentService.selectStudentById(id));
         return "student";
     }
 
     @RequestMapping("/select")
     @ResponseBody
     public String select(Model model){
-        model.addAttribute("studentList",studentServiceImpl.selectStudent());
+        model.addAttribute("studentList",studentService.selectStudent());
         return "index";
     }
+
+    @RequestMapping("/alert")
+    @ResponseBody
+    public Result alert(Student student) {
+        int code = studentService.alertStudent(student);
+        return result(code);
+    }
+
+    private Result result(int code) {
+        String message = "系统异常!";
+        if (code == 1) {
+            message = "成功!";
+        }
+        return new Result(code, message, -1);
+    }
+
 }

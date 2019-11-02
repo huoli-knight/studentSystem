@@ -11,10 +11,10 @@ import com.suixingpay.model.po.Administrator;
 import com.suixingpay.model.services.LoginService;
 import com.suixingpay.model.services.RegisterService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-@Controller
+@RestController
 public class Login {
 
     @Autowired
