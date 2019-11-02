@@ -23,7 +23,7 @@ public class StudentController {
     @RequestMapping("/selectById")
     @ResponseBody
     public String selectById(int sudentid,Model model){
-        model.addAttribute("student",studentServiceImpl.selectStudentById(sudentid));
+        model.addAttribute("student",studentService.selectStudentById(sudentid));
         return "student";
     }
 
