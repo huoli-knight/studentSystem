@@ -12,10 +12,14 @@ import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+/*
+*@Author: 周波
+* 测试登录 及 注册
+ */
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @EnableAutoConfiguration
-public class AdministratorMapperTest {
+public class LoginTest {
 
     @Autowired
     private LoginService loginService;

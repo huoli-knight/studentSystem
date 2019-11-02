@@ -21,12 +21,20 @@ public class Login {
     @Autowired
     private RegisterService registerService;
 
+    /*
+    *登录验证
+    * 参数：Administrator 用户名，密码
+     */
     @RequestMapping("/login")
     public String login(Administrator admin) {
         int adminId = loginService.login(admin);
         return result(adminId);
     }
 
+    /*
+     *ROOT验证
+     * 参数：Administrator ROOT用户名，密码
+     */
     @RequestMapping("/registerjudge")
     public String registerJudge(Administrator root) {
         int adminId = registerService.judgeRoot(root);
