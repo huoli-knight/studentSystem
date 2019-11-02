@@ -1,5 +1,6 @@
 package com.suixingpay.controller;
 
+import com.suixingpay.model.common.Result;
 import com.suixingpay.model.po.Administrator;
 import com.suixingpay.model.services.RegisterService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,22 +25,20 @@ public class Register {
     * 参数 Administrator 注册用户名，密码
      */
     @RequestMapping("/register")
-    public String register(Administrator admin) {
+    public Result register(Administrator admin) {
         int adminId = registerService.register(admin);
         return result(adminId);
     }
 
-    private String result(int adminId) {
+    private Result result(int adminId) {
         int code = 0;
         String message = "系统异常！";
         if (adminId > 0) {
             code = 1;
             message = "注册成功!";
         }
-        return "{\"code\":" + code + "," +
-                "\"adminId\":" + adminId + "," +
-                "\"message\":" + message +
-                "}";
+        Result result = new Result(code, message, adminId);
+        return result;
     }
 
 }
