@@ -1,4 +1,4 @@
 package com.suixingpay.model.mapper;
 
-public interface Student {
+public interface S_gradeMapper {
 }

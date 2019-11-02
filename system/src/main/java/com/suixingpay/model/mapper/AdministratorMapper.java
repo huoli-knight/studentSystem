@@ -22,6 +22,7 @@ public interface AdministratorMapper {
     /*
     *添加administrator一条数据
      */
+
     @Insert("insert into administrator(username, password) values (#{username}, #{password})")
     public int addAdminData(Administrator admin);
 }
