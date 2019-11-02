@@ -1,8 +1,7 @@
 package com.suixingpay.model.mapper;
 
 import com.suixingpay.model.po.S_grade;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
 
 import java.util.ArrayList;
 
@@ -18,6 +17,13 @@ public interface CourseMapper {
             "\tLEFT JOIN course ON s_grade.c_id = course.id \n" +
             "WHERE\n" +
             "\ts_grade.s_id = #{id};")
+    @Results({
+            @Result(property = "student.name",column = "student_name",
+                    one = @One(select = "com.suixingpay.model.mapper.CourseMapper.selectCourseById")),
+            @Result(property = "course.name",column = "course_name",
+                    one = @One(select = "com.suixingpay.model.mapper.CourseMapper.selectCourseById"))
+
+    })
     ArrayList<S_grade> selectCourseById(int id);
 
 }
