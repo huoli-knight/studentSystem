@@ -11,8 +11,10 @@ import com.suixingpay.model.po.Administrator;
 import com.suixingpay.model.services.LoginService;
 import com.suixingpay.model.services.RegisterService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.ModelAndView;
 
 @RestController
 public class Login {
@@ -21,6 +23,12 @@ public class Login {
     private LoginService loginService;
     @Autowired
     private RegisterService registerService;
+
+    @RequestMapping(value = "/start")
+    public ModelAndView start() {
+        ModelAndView view = new ModelAndView("login.html");
+        return view;
+    }
 
     /*
     *登录验证
