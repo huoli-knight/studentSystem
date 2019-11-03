@@ -1,0 +1,29 @@
+body {
+    height: 100%;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    /* background: #c2e8ce url('./../page2.jpg'); */
+    /* background-size: unset; */
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+.box {
+    width: 500px;
+    height: 500px;
+    background-color: #f2eee5;
+    margin: 200px auto;
+    color: #be7575;
+    text-align: center;
+    /* color: #f6ad7b; */
+}
+
+input {
+    color: #be7575;
+    height: 30px;
+    border: none;
+    background-color: #f2eee5;
+    text-decoration: none;
+    border-bottom: 1px solid #c2e8ce;
+    margin: 10px 0;
+}
