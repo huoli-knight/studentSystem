@@ -11,8 +11,8 @@ import com.suixingpay.model.po.Administrator;
 import com.suixingpay.model.services.LoginService;
 import com.suixingpay.model.services.RegisterService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -26,7 +26,7 @@ public class Login {
 
     @RequestMapping(value = "/start")
     public ModelAndView start() {
-        ModelAndView view = new ModelAndView("login.html");
+        ModelAndView view = new ModelAndView("login");
         return view;
     }
 
@@ -35,9 +35,12 @@ public class Login {
     * 参数：Administrator 用户名，密码
      */
     @RequestMapping("/login")
+    @ResponseBody
     public Result login(Administrator admin) {
         int adminId = loginService.login(admin);
-        return result(adminId);
+        Result result = result(adminId);
+        result.setRedirect("student_index");
+        return result;
     }
 
     /*
@@ -45,9 +48,12 @@ public class Login {
      * 参数：Administrator ROOT用户名，密码
      */
     @RequestMapping("/registerjudge")
+    @ResponseBody
     public Result registerJudge(Administrator root) {
         int adminId = registerService.judgeRoot(root);
-        return result(adminId);
+        Result result = result(adminId);
+        result.setRedirect("register");
+        return result;
     }
 
     private Result result(int adminId) {
@@ -64,4 +70,6 @@ public class Login {
         Result result = new Result(code, message, adminId);
         return result;
     }
+
+
 }

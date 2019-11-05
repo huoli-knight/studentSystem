@@ -10,12 +10,14 @@ import java.util.ArrayList;
 
 @Service
 public class StudentServiceImpl implements StudentService {
+
+
     @Autowired
     private StudentMapper studentMapper;
 
     @Override
-    public Student selectStudentById(int sudentid){
-        return studentMapper.selectStudentById(sudentid);
+    public Student selectStudentById(Student student){
+        return studentMapper.selectStudentById(student);
     }
 
     @Override
@@ -25,9 +27,39 @@ public class StudentServiceImpl implements StudentService {
 
     @Override
     public int alertStudent(Student student) {
-        if(studentMapper.alert(student) > 0) {
-            return 1;
+        try {
+            if(studentMapper.alert(student) > 0) {
+                return 1;
+            }
+
+        }catch (Exception e) {
+            return 0;
         }
         return 0;
     }
+    @Override
+    public int delete(Student student) {
+        try {
+            if(studentMapper.deleteById(student) > 0){
+                return 1;
+            }
+
+        }catch (Exception e) {
+            return 0;
+        }
+        return 0;
+    }
+
+    @Override
+    public int addStudent(Student student) {
+        try {
+            if(studentMapper.addStudent(student) > 0) {
+                return 1;
+            }
+        } catch (Exception e) {
+            return 0;
+        }
+        return 0;
+    }
+
 }

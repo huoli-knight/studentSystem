@@ -4,11 +4,18 @@ public class Result {
 
     private int code;
     private String message;
+    // 用户ID
     private int adminId;
+    //需要跳转的页面
+    private String redirect;
 
-    public Result(int code, String message, int adminId) {
+    public Result(int code, String message) {
         this.code = code;
         this.message = message;
+    }
+
+    public Result(int code, String message, int adminId) {
+        this(code, message);
         this.adminId = adminId;
     }
 
@@ -34,5 +41,13 @@ public class Result {
 
     public void setAdminId(int adminId) {
         this.adminId = adminId;
+    }
+
+    public String getRedirect() {
+        return redirect;
+    }
+
+    public void setRedirect(String redirect) {
+        this.redirect = redirect;
     }
 }

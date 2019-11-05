@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Title</title>
+    <script th:src="@{https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js}"></script>
+</head>
+<body>
+<div class="tap"></div>
+<div>
+学号:<input CLASS="studentId" type="text" value="">
+<input class="findById" type="button" value="查找"></body><br>
+姓名:<input class="name" type="text" value=""><br>
+性别:<input class="sex" type="text" value=""><br>
+年龄:<input class="age" type="text" value=""><br>
+地址:<input class="address" type="text" value=""><br>
+邮箱<input class="email" type="text" value=""><br>
+<input class="alert" type="button" value="修改">
+<input class="add" type="button" value="增加"></div><br>
+<input class="index" type="button" value="返回">
+</body>
+<script>
+    $(function () {
+        $(".index").click(function () {
+            window.location.href ="/student_index";
+        });
+        $(".add").click(function () {
+            var sudentId = $(".studentId").val();
+            var name = $(".name").val();
+            var sex = $(".sex").val();
+            var age = $(".age").val();
+            var address = $(".address").val();
+            var email = $(".email").val();
+            $.ajax({
+                type: "post",
+                url: "/student/addStudent",
+                async: false,
+                dataType: "json",
+                data: {
+                    sudentId: sudentId,
+                    name: name,
+                    sex: sex,
+                    age: age,
+                    address: address,
+                    email:email,
+                },
+                success: function (data) {
+                    $(".tap").html(data.message);
+                }
+            });
+        })
+
+        $(".alert").click(function () {
+            var sudentId = $(".studentId").val();
+            var name = $(".name").val();
+            var sex = $(".sex").val();
+            var age = $(".age").val();
+            var address = $(".address").val();
+            var email = $(".email").val();
+            $.ajax({
+                type: "post",
+                url: "/student/alert",
+                async: false,
+                dataType: "json",
+                data: {
+                    sudentId: sudentId,
+                    name: name,
+                    sex: sex,
+                    age: age,
+                    address: address,
+                    email:email,
+                },
+                success: function (data) {
+                    $(".tap").html(data.message);
+                }
+            });
+        })
+
+       $(".findById").click(function () {
+            var sudentId = $(".studentId").val();
+           $.ajax({
+               type: "post",
+               url: "/student/selectById",
+               async: false,
+               dataType: "json",
+               data: {
+                   sudentId: sudentId,
+               },
+               success: function (data) {
+                    if (data != null) {
+                        if(data.name != null) {
+                            $(".name").attr({"value" : data.name});
+                        }
+                        if(data.sex != null) {
+                            $(".sex").attr({"value" : data.sex});
+                        }
+                        if(data.age != null) {
+                            $(".age").attr({"value" : data.age});
+                        }
+                        if(data.address != null) {
+                            $(".address").attr({"value" : data.address});
+                        }
+                        if(data.email != null) {
+                            $(".email").attr({"value" : data.email});
+                        }
+                    } else {
+                        $(".tap").html("无效学号!");
+                    }
+               }
+               })
+        }) ;
+    });
+</script>
+</html>
