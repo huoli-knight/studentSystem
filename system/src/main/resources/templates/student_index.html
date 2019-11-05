@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" th:href="@{css/student_index.css}">
+    <script th:src="@{https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js}"></script>
+</head>
+
+<body>
+<header>
+    <div class="header_left">
+        <img th:src="@{/img/logo.png}" alt="">
+        <span>欢迎使用，学生信息管理系统</span>
+    </div>
+    <div class="header_right">
+        <span>用户名</span>
+        <img th:src="@{/img/exit.png}" alt="">
+    </div>
+</header>
+
+<div class="main_box">
+    <aside>
+        <div class="slogan">
+            <div class="slogan_img_box">
+                <img th:src="@{/img/slogan.png}" alt="">
+            </div>
+            <div class="title">
+                <p>厚德载物</p>
+                <p>自强不息</p>
+            </div>
+        </div>
+        <div class="aside_list">
+            <ul>
+                <li>
+                    <div class="selected"></div>
+                    <img th:src="@{/img/student.png}" alt="">
+                    <span>学生管理</span>
+                    <img id="down" th:src="@{/img/down.png}" alt="">
+                </li>
+            </ul>
+        </div>
+    </aside>
+    <div class="center_box">
+        <div>
+            <input class="delete" type="text" placeholder="请输入学生学号">
+            <input type="button" class="search_button" value="delete">
+            <a class="addAndAlert" th:href="@{/addAndAlert}">添加与修改</a>
+        </div>
+        <div>
+            <table class="">
+                <thead>
+                    <tr class="table_head">
+                        <th class="">学号</th>
+                        <th class="">姓名</th>
+                        <th class="">性别</th>
+                        <th class="">年龄</th>
+                        <th class="">地址</th>
+                        <th class="">邮箱</th>
+                    </tr>
+                </thead>
+                <tbody class="table_item">
+                    <tr>
+                        <td>学号</td>
+                        <td>姓名</td>
+                        <td>性别</td>
+                        <td>年龄</td>
+                        <td>地址</td>
+                        <td>邮箱</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+</body>
+<script th:src="@{js/student_index.js}"></script>
+<script>
+    $(function () {
+        $.ajax({
+            url: "/student/select",
+            type: "post",
+            dataType: "json",
+            success: function (msg) {
+                alert(msg.length);
+                for (var i = 0; i < msg.length; i++) {
+                    $(".table_item").append(
+                        "<tr>" +
+                        "<td width=\"100\">" + msg[i].sudentId + "</td>" +
+                        "<td width=\"100\">" + msg[i].name + "</td>" +
+                        "<td width=\"100\">" + msg[i].sex + "</td>" +
+                        "<td width=\"100\">" + msg[i].age + "</td>" +
+                        "<td width=\"100\">" + msg[i].address + "</td>" +
+                        "<td width=\"100\">" + msg[i].email + "</td>" +
+                        "</tr>"
+                    );
+                }
+            }
+        })
+
+        $(".search_button").click(function () {
+            var sudentId = $(".delete").val();
+            $.ajax({
+                url: "/student/delete",
+                type: "post",
+                dataType: "json",
+                async: false,
+                data: {
+                    sudentId:sudentId,
+                },
+                success: function (data) {
+                    alert(data.message);
+                }
+            });
+        });
+    });
+</script>
+</html>

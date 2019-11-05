@@ -1,8 +1,11 @@
 package com.suixingpay;
 
+import ch.qos.logback.core.net.SyslogOutputStream;
 import com.suixingpay.model.po.Administrator;
+import com.suixingpay.model.services.CourseService;
 import com.suixingpay.model.services.LoginService;
 import com.suixingpay.model.services.RegisterService;
+import com.suixingpay.model.services.StudentService;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -12,20 +15,17 @@ import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-/*
-*@Author: 周波
-* 测试登录 及 注册
+/**
+ * @author Mrs.Wang
+ * @create 2019-11-03 17:11
  */
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @EnableAutoConfiguration
-public class LoginTest {
-
+public class deleteTest {
     @Autowired
-    private LoginService loginService;
+    StudentService studentService;
 
-    @Autowired
-    private RegisterService registerService;
 
     private Administrator admin = new Administrator();;
 
@@ -40,10 +40,7 @@ public class LoginTest {
     }
 
     @Test
-    public void login() {
-        admin.setUsername("admin2");
-        admin.setPassword("2222");
-        System.out.println(registerService.register(admin));
-        System.out.println(loginService.login(admin));
+    public void delete() {
+      System.out.println(studentService.delete(1));
     }
 }

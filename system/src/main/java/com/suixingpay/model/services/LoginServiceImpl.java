@@ -18,7 +18,13 @@ public class LoginServiceImpl implements LoginService{
 
     @Override
     public int login(Administrator admin) {
+        if (admin.getPassword() == null || admin.getUsername() == null) {
+            return -1;
+        }
         Administrator adminJudge = administratorMapper.getAdminData(admin.getUsername());
+        if(adminJudge == null || adminJudge.getPassword() == null) {
+            return -1;
+        }
         if (admin.getPassword().equals(adminJudge.getPassword())) {
             return adminJudge.getId();
         }

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="student_index.css">
+</head>
+
+<body>
+    <header>
+        <div class="header_left">
+            <img src="img/logo.png" alt="">
+            <span>欢迎使用，学生信息管理系统</span>
+        </div>
+        <div class="header_right">
+            <span>用户名</span>
+            <img src="img/exit.png" alt="">
+        </div>
+    </header>
+    <aside style="float:left">
+        <div class="slogan">
+            <div class="slogan_img_box">
+                <img src="img/slogan.png" alt="">
+            </div>
+            <div class="title">
+                <p>厚德载物</p>
+                <p>自强不息</p>
+            </div>
+        </div>
+        <div class="aside_list">
+            <ul>
+                <li>
+                    <div class="selected"></div>
+                    <img src="img/student.png" alt="">
+                    <span>学生管理</span>
+                    <img src="" alt="">
+                </li>
+            </ul>
+        </div>
+
+
+    </aside>
+    <div class="aside_right">
+
+        <div class="information"> 添加学生信息 </div>
+        <!-- <ul class="information_ul_float">
+            <li>username</li>
+            <li>number</li>
+            <li>age</li>
+            <li>sex</li>
+            <li>grade</li>
+
+        </ul> -->
+
+        <div class='form'>
+            <div> studentId: </div>
+            <input type="text" id='studentId'> <br>
+            <div> courseName: </div>
+            <input type="text" id='courseName'> <br>
+            <div> grade: </div>
+            <input type="text" id='grade'> <br>
+            <!-- <div> grade: </div>
+            <input type="text"> <br>
+            <div> math: </div>
+            <input type="text"> -->
+            <button type="submit" id='submit'>submit</button>
+        </div>
+    </div>
+
+    <script>
+        $(function() {
+            $("#submit").click(function() {
+                var studentId = $("#studentId").val();
+                var courseName = $("#courseName").val();
+                var grade = $("#grade").val();
+                alert(username);
+                $.ajax({
+                    type: "post",
+                    url: "/grade/add",
+                    async: false,
+                    dataType: "json",
+                    data: {
+                        studentId: studentId,
+                        courseName: courseName,
+                        grade: grade
+                    },
+                    success: function(data) {
+                        alert(data);
+
+                    }
+                })
+            });
+        })
+    </script>
+</body>
+
+</html>

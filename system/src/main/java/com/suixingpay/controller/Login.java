@@ -6,14 +6,17 @@ package com.suixingpay.controller;
  * 内容：登录验证
  */
 
+import com.suixingpay.model.common.Result;
 import com.suixingpay.model.po.Administrator;
 import com.suixingpay.model.services.LoginService;
 import com.suixingpay.model.services.RegisterService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.ModelAndView;
 
-@Controller
+@RestController
 public class Login {
 
     @Autowired
@@ -21,14 +24,23 @@ public class Login {
     @Autowired
     private RegisterService registerService;
 
+    @RequestMapping(value = "/start")
+    public ModelAndView start() {
+        ModelAndView view = new ModelAndView("login");
+        return view;
+    }
+
     /*
     *登录验证
     * 参数：Administrator 用户名，密码
      */
     @RequestMapping("/login")
-    public String login(Administrator admin) {
+    @ResponseBody
+    public Result login(Administrator admin) {
         int adminId = loginService.login(admin);
-        return result(adminId);
+        Result result = result(adminId);
+        result.setRedirect("student_index");
+        return result;
     }
 
     /*
@@ -36,12 +48,15 @@ public class Login {
      * 参数：Administrator ROOT用户名，密码
      */
     @RequestMapping("/registerjudge")
-    public String registerJudge(Administrator root) {
+    @ResponseBody
+    public Result registerJudge(Administrator root) {
         int adminId = registerService.judgeRoot(root);
-        return result(adminId);
+        Result result = result(adminId);
+        result.setRedirect("register");
+        return result;
     }
 
-    private String result(int adminId) {
+    private Result result(int adminId) {
         int code = -1;
         String message = "用户名或密码错误!";
         if (adminId > 0) {
@@ -52,9 +67,9 @@ public class Login {
             code = 0;
             message = "系统异常！";
         }
-        return "{\"code\":" + code + "," +
-                "\"adminId\":" + adminId + "," +
-                "\"message\":" + message +
-                "}";
+        Result result = new Result(code, message, adminId);
+        return result;
     }
+
+
 }
