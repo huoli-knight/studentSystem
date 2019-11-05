@@ -1,6 +1,8 @@
 package com.suixingpay.model.mapper;
 
 import com.suixingpay.model.po.Student;
+import org.apache.ibatis.annotations.Delete;
+import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
@@ -9,11 +11,17 @@ import java.util.ArrayList;
 
 public interface StudentMapper {
 
-    @Select("SELECT id,sudentId,name,sex,age,address,email from student WHERE sudentid = #{sudentid};")
-    Student selectStudentById(int sudentid);
+    @Delete(" delete from student where sudentId = #{sudentId} ")
+    public int deleteById(Student student);
+
+    @Select("SELECT id,sudentId,name,sex,age,address,email from student WHERE sudentId = #{sudentId};")
+    Student selectStudentById(Student student);
 
     @Select("SELECT id,sudentId,name,sex,age,address,email from student")
     ArrayList<Student> selectStudent();
+
+    @Insert("INSERT into student set sudentId=#{sudentId},name=#{name},sex=#{sex},age=#{age},address=#{address},email=#{email}")
+    int addStudent(Student student);
 
     @Update("<script>" +
             "UPDATE student" +
